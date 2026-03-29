@@ -1,11 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz 02 - Style Playground</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ── Reset & Base ────────────────────────────────────────────── */
+        
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --color-bg: #e8e0d5;
+            --color-card: #ffffff;
+            --color-border: #d0c8bc;
+            --color-text: #1a1a1a;
+            --color-muted: #555;
+            --color-accent: #2a6099;
+            --color-highlight-bg: #fff9c4;
+            --color-blockquote-border: #c8b89a;
+            --radius: 6px;
+            --card-width: 390px;
+        }
+        
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            padding: 1.2rem 1rem;
+        }
+        
+        header,
+        section,
+        footer {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 0.9rem 1rem;
+            margin-bottom: 0.7rem;
+            width: var(--card-width);
+            max-width: 100%;
+        }
+        
+        header .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-muted);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+        
+        header h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 0.3rem;
+            color: var(--color-text);
+        }
+        
+        header .subtitle {
+            font-size: 0.82rem;
+            color: var(--color-muted);
+        }
+        
+        h2 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: var(--color-text);
+        }
+        
+        p {
+            font-size: 0.85rem;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+        
+        a {
+            color: var(--color-accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        
+        a:hover {
+            color: #1a4a70;
+        }
+        
+        mark {
+            background-color: var(--color-highlight-bg);
+            color: var(--color-text);
+            padding: 0 0.15em;
+            border-radius: 2px;
+        }
+        
+        blockquote {
+            border-left: 3px solid var(--color-blockquote-border);
+            padding: 0.45rem 0.8rem;
+            margin-top: 0.6rem;
+            color: var(--color-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        
+        ul {
+            padding-left: 1.1rem;
+            margin: 0;
+        }
+        
+        ul li {
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.1em 0.5em;
+            border-radius: 99px;
+            font-weight: 500;
+            vertical-align: middle;
+            border: 1px solid transparent;
+        }
+        
+        .badge-new {
+            background-color: #d4f0e0;
+            color: #1a6b3c;
+            border-color: #a8dcc0;
+        }
+        
+        .badge-simple {
+            background-color: #e8f4fb;
+            color: #1a5a80;
+            border-color: #b8d8ee;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.38rem 0.9rem;
+            border-radius: var(--radius);
+            font-size: 0.83rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: background 0.15s ease;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background-color: #2a6099;
+            color: #fff;
+            border: 1px solid #2a6099;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e4a78;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #2a6099;
+            border: 1px solid #2a6099;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2a6099;
+            color: #fff;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        label {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+        
+        input[type="text"],
+        select,
+        textarea {
+            padding: 0.42rem 0.65rem;
+            border: 1px solid #c8c0b4;
+            border-radius: var(--radius);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            background: #fff;
+            color: #888;
+            width: 100%;
+            transition: border-color 0.15s;
+        }
+        
+        input[type="text"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2a6099;
+            color: var(--color-text);
+        }
+        
+        select {
+            color: var(--color-text);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.83rem;
+            border: 1px solid var(--color-border);
+        }
+        
+        th,
+        td {
+            text-align: left;
+            padding: 0.45rem 0.7rem;
+            border: 1px solid var(--color-border);
+        }
+        
+        th {
+            font-weight: 600;
+            background-color: #f5f2ee;
+            color: var(--color-text);
+            font-size: 0.82rem;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #faf9f7;
+        }
+        
+        details {
+            background: transparent;
+        }
+        
+        summary {
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--color-accent);
+            user-select: none;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        
+        summary::before {
+            content: '▶';
+            font-size: 0.6rem;
+            transition: transform 0.15s;
+            display: inline-block;
+        }
+        
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        
+        details[open] summary {
+            margin-bottom: 0.5rem;
+        }
+        
+        details p {
+            font-size: 0.84rem;
+            color: var(--color-muted);
+            padding-left: 1rem;
+        }
+        
+        footer p {
+            font-size: 0.78rem;
+            color: var(--color-muted);
+            margin: 0;
+            font-style: italic;
+        }
+    </style>
 </head>
+
 <body>
-  
+
+    <header>
+        <span class="label">QUIZ 02</span>
+        <h1>Small HTML + CSS Playground</h1>
+        <p class="subtitle">A no-layout demo with stronger typography, color, and component styling.</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Text Styles</h2>
+            <p>This paragraph shows the base body type. Here is an <a href="#">inline link example</a> and a little <mark>highlight</mark>.</p>
+            <blockquote>Good visual hierarchy can make simple HTML feel intentional.</blockquote>
+        </section>
+
+        <section>
+            <h2>Lists + Badges</h2>
+            <ul>
+                <li>Readable spacing and line height</li>
+                <li>Clear color contrast</li>
+                <li>Labels like <span class="badge badge-new">new</span> <span class="badge badge-simple">simple</span></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Buttons</h2>
+            <div class="button-group">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Form Sample</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Jane Doe" />
+                </div>
+                <div class="form-group">
+                    <label for="topic">Favorite Topic</label>
+                    <select id="topic">
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>Accessibility</option>
+          </select>
+                </div>
+                <div class="form-group">
+                    <label for="note">Note</label>
+                    <textarea id="note" rows="3" placeholder="Write something..."></textarea>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Typography</td>
+                        <td>Done</td>
+                        <td>Base</td>
+                    </tr>
+                    <tr>
+                        <td>Color</td>
+                        <td>Done</td>
+                        <td>Base</td>
+                    </tr>
+                    <tr>
+                        <td>Components</td>
+                        <td>In Progress</td>
+                        <td>Light</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Details</h2>
+            <details>
+                <summary>Why this works without layout tools</summary>
+                <p>Normal document flow can still look polished when spacing, borders, font scale, and color are treated consistently.</p>
+            </details>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Built for class quiz practice.</p>
+    </footer>
+
 </body>
+
 </html>
